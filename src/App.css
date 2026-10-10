@@ -7,21 +7,26 @@ h1{
 input{
     width: 100%;
 }
-.container{
-    text-align: left;
-}
 .kg-row{
     margin: 5px;
+    
 }
 .kg-button{
     min-width:80px;
 }
 .text{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-weight:500;
     background-color: rgb(54, 125, 187);
     box-shadow: 2px rgb(180, 194, 206);
+
 }
 .text-date{
     background-color: rgb(3, 154, 154);
     font-weight:500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
