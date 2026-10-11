@@ -1,35 +1,34 @@
-import { useState } from "react";
-
+import { useState,useRef } from "react";
+import { RiAddLargeFill } from "react-icons/ri";
 function AddTodo({handleOnChange}){
-    const [currTask,setTask]=useState("");
-    const [currDate,setDate]=useState("");
-    const inputData=(evt)=>{
-        setTask(evt.target.value);
-        // evt.target.value="";ss
-    }
-    const inputDate=(evt)=>{
-        setDate(evt.target.value);
-    }
-    const btnAction=()=>{
-        if(currTask || currDate){
-            handleOnChange(currTask,currDate);
-            setDate("");
-            setTask("");
+    const dataRef=useRef();
+    const dateRef = useRef();
+    
+    const btnAction=(evt)=>{
+        console.log(dataRef.current.value);
+        if(dataRef || dateRef){
+            evt.preventDefault();
+            const finalData =dataRef.current.value ;        
+            const finalDate = dateRef.current.value;
+            handleOnChange(finalData,finalDate);
+            dataRef.current.value="";
+            dateRef.current.value="";
+            console.log(finalData,finalDate);  
+                     
         }
-        
     }
     return (
-            <div className="row kg-row">
+            <form className="row kg-row" onSubmit={btnAction}>
                 <div className="col-6">
-                    <input placeholder="Enter todo here" type="text"  onChange={inputData} value={currTask} />
+                    <input placeholder="Enter todo here" type="text" ref={dataRef}  />
                 </div>
                 <div className="col-4">
-                    <input type="date"  onChange={inputDate} value={currDate} />
+                    <input type="date" ref={dateRef}  />
                 </div>
                 <div className="col-2">
-                    <button type="button" className="btn btn-success kg-button" onClick={btnAction}>Add</button>
+                    <button  className="btn btn-success kg-button"  onClick={btnAction}><RiAddLargeFill/></button>
                 </div>
-            </div>
+            </form>
         )
 }
 export default AddTodo;
