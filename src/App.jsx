@@ -14,27 +14,25 @@ function App() {
         item:currTodo,
         date:currDate,
       }
-    ])
+    ]);
   }
   const handleDeleteBtn=(todoItemName)=>{
     const newTasks= currTask.filter(things => things.item !== todoItemName );
     setText(newTasks);
-
   }
-  const defaultTodoItems=[{
-    item:"go to college",
-    date:"6/9/2007",
-  }]
   return <center className="todo-placeholder">
-      <TodoItemsContext.Provider value={defaultTodoItems}>
+      <TodoItemsContext.Provider value={{
+        todoItems:currTask,
+        handleOnChange,
+        handleDeleteBtn,
+        }}>
         <div className="container text-center">
           <AppName/>
-          <AddTodo handleOnChange={handleOnChange}/>
-          <ErrorMsg currTask={currTask}></ErrorMsg>
-          <TodoItems tasks={currTask} handleDeleteBtn={handleDeleteBtn}></TodoItems>
+          <AddTodo />
+          <ErrorMsg ></ErrorMsg>
+          <TodoItems ></TodoItems>
         </div>
       </TodoItemsContext.Provider>
     </center>
 }
 export default App;
-// inputDate={inputDate} inputData={inputData}

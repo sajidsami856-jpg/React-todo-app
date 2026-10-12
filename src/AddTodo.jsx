@@ -1,9 +1,10 @@
-import { useState,useRef } from "react";
+import { useState,useRef, useContext } from "react";
 import { RiAddLargeFill } from "react-icons/ri";
-function AddTodo({handleOnChange}){
+import { TodoItemsContext } from "./store/todo-items-store";
+function AddTodo(){
     const dataRef=useRef();
     const dateRef = useRef();
-    
+    const {handleOnChange}=useContext(TodoItemsContext);
     const btnAction=(evt)=>{
         console.log(dataRef.current.value);
         if(dataRef || dateRef){
